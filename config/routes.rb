@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Venue resource:
+
+  # CREATE
+  post("/insert_venue", { :controller => "venues", :action => "create" })
+          
+  # READ
+  get("/venues", { :controller => "venues", :action => "index" })
+  
+  get("/venues/:path_id", { :controller => "venues", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_venue/:path_id", { :controller => "venues", :action => "update" })
+  
+  # DELETE
+  get("/delete_venue/:path_id", { :controller => "venues", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Show resource:
 
   # CREATE

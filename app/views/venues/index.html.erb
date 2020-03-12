@@ -1,0 +1,118 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of all venues
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new venue
+    </h2>
+
+    <form action="/insert_venue" method="post">
+      <div class="form-group">
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="link_box">
+          Link
+        </label>
+
+        <input type="text" id="link_box" name="query_link" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="city_box">
+          City
+        </label>
+
+        <input type="text" id="city_box" name="query_city" class="form-control">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create venue
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Link
+        </th>
+
+        <th>
+          City
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @venues.each do |venue| %>
+      <tr>
+        <td>
+          <%= venue.id %>
+        </td>
+
+        <td>
+          <%= venue.name %>
+        </td>
+
+        <td>
+          <%= venue.link %>
+        </td>
+
+        <td>
+          <%= venue.city %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(venue.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(venue.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/venues/<%= venue.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

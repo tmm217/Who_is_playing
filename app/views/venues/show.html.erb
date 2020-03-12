@@ -1,0 +1,101 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Venue #<%= @venue.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/venues" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_venue/<%= @venue.id %>" class="btn btn-block btn-outline-secondary">
+          Delete venue
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @venue.name %>
+      </dd>
+
+      <dt>
+        Link
+      </dt>
+      <dd>
+        <%= @venue.link %>
+      </dd>
+
+      <dt>
+        City
+      </dt>
+      <dd>
+        <%= @venue.city %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@venue.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@venue.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit venue
+    </h2>
+
+    <form action="/modify_venue/<%= @venue.id %>"  method="post" >
+      <div class="form-group">
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" class="form-control" value="<%= @venue.name %>">
+      </div>
+
+      <div class="form-group">
+        <label for="link_box">
+          Link
+        </label>
+
+        <input type="text" id="link_box" name="query_link" class="form-control" value="<%= @venue.link %>">
+      </div>
+
+      <div class="form-group">
+        <label for="city_box">
+          City
+        </label>
+
+        <input type="text" id="city_box" name="query_city" class="form-control" value="<%= @venue.city %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update venue
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
