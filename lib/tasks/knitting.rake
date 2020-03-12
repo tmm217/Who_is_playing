@@ -22,8 +22,8 @@ task(:knitting_shows => :environment) do
     s = Show.new
       s.host_id = 3
       s.show_date = "#{date}"
-      s.show_image = "#{image}"
-      s.show_bands = "#{bands}"
+      s.image = "#{image}"
+      s.bands = "#{bands}"
       if sale == "SOLD OUT"
         s.is_soldout = "true"
       else

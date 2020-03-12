@@ -17,11 +17,11 @@ task(:metro_shows => :environment) do
     s = Show.new
     s.host_id = 1
     s.show_date = "#{day} #{date_no} #{month}"
-    s.show_image = "#{image}"
+    s.image = "#{image}"
     if openers.empty?
-      s.show_bands = "#{headliner}"
+      s.bands = "#{headliner}"
     else
-      s.show_bands = "#{headliner} with #{openers}"
+      s.bands = "#{headliner} with #{openers}"
     end
     if sale == "Sold Out"
       s.is_soldout = "true"

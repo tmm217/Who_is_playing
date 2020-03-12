@@ -31,15 +31,15 @@ task(:blounge_shows => :environment) do
     s = Show.new
     s.host_id = 2
     s.show_date = "#{day} #{date_no} #{month}"
-    s.show_image = "#{image}"
+    s.image = "#{image}"
     if opener_1.empty?
-      s.show_bands = "#{headliner_tr}"
+      s.bands = "#{headliner_tr}"
     elsif opener_2.empty?
-      s.show_bands = "#{headliner_tr} with #{opener_1}"
+      s.bands = "#{headliner_tr} with #{opener_1}"
     elsif opener_3.empty?
-      s.show_bands = "#{headliner_tr} with #{opener_1} and #{opener_2}"
+      s.bands = "#{headliner_tr} with #{opener_1} and #{opener_2}"
     elsif opener_4.empty?
-      s.show_bands = "#{headliner_tr} with #{opener_1}, #{opener_2}, and #{opener_3}"
+      s.bands = "#{headliner_tr} with #{opener_1}, #{opener_2}, and #{opener_3}"
     end
     if sale == "SOLD OUT!"
       s.is_soldout = "true"
