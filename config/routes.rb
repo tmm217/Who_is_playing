@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Venue follow resource:
+
+  # CREATE
+  post("/insert_venue_follow", { :controller => "venue_follows", :action => "create" })
+          
+  # READ
+  get("/venue_follows", { :controller => "venue_follows", :action => "index" })
+  
+  get("/venue_follows/:path_id", { :controller => "venue_follows", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_venue_follow/:path_id", { :controller => "venue_follows", :action => "update" })
+  
+  # DELETE
+  get("/delete_venue_follow/:path_id", { :controller => "venue_follows", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Venue resource:
 
   # CREATE
