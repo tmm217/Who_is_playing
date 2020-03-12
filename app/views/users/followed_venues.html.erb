@@ -1,22 +1,22 @@
-<h2>My Venues and Shows</h2>
+<h1>My Venues and Shows</h1>
 
 <% @current_user.venue_feed.each do | followed | %>
-  <h3><%= followed.name %></h3>
   <table border="1">
+  <h2><%= followed.name %></h2>
     <tr>
       <th>
         Image
       </th>
-      <th>
+      <th width="500">
         Bands
       </th>
-      <th>
+      <th width="150">
         Show Date
       </th>
-      <th>
+      <th width="150">
         Sale Info
       </th>
-      <th>
+      <th width="150">
         Track?
       </th>
     </tr>
@@ -25,19 +25,19 @@
       <td>
         <img src="<%= details.image %>" height="200" width="260">
       </td>
-      <td>
+      <td width="500">
         <%= details.bands %>
       </td>
-      <td>
+      <td width="150" style="text-align: center">
         <%= details.show_date.strftime("%a %d %b") %>
       </td>
-      <td>
+      <td width="150" style="text-align: center">
         <% if details.is_soldout == true %>
           Sold Out!
         <% else %>
           Tickets!
         <% end %>
-      </td>
+      </td width="150" style="text-align: center">
       <td>
       </td>
     </tr>
