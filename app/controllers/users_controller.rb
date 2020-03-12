@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if save_status == true
       session.store(:user_id,  @user.id)
    
-      redirect_to("/", { :notice => "User account created successfully."})
+      redirect_to("/venues", { :notice => "User account created successfully."})
     else
       redirect_to("/user_sign_up", { :alert => "User account failed to create successfully."})
     end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
 
-      redirect_to("/", { :notice => "User account updated successfully."})
+      redirect_to("/edit_user_profile", { :notice => "User account updated successfully."})
     else
       render({ :template => "users/edit_profile_with_errors.html.erb" })
     end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     @current_user.destroy
     reset_session
     
-    redirect_to("/", { :notice => "User account cancelled" })
+    redirect_to("/user_sign_up", { :notice => "User account cancelled" })
   end
   
 end

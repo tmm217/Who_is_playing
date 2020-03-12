@@ -18,7 +18,7 @@ class UserSessionsController < ApplicationController
       else
         session.store(:user_id, user.id)
       
-        redirect_to("/", { :notice => "Signed in successfully." })
+        redirect_to("/venues", { :notice => "Signed in successfully." })
       end
     else
       redirect_to("/user_sign_in", { :alert => "No user with that email address." })
@@ -28,7 +28,7 @@ class UserSessionsController < ApplicationController
   def destroy_cookies
     reset_session
 
-    redirect_to("/", { :notice => "Signed out successfully." })
+    redirect_to("/user_sign_in", { :notice => "Signed out successfully." })
   end
  
 end
