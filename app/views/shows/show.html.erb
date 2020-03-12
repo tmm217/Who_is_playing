@@ -1,0 +1,131 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Show #<%= @show.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/shows" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_show/<%= @show.id %>" class="btn btn-block btn-outline-secondary">
+          Delete show
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Bands
+      </dt>
+      <dd>
+        <%= @show.bands %>
+      </dd>
+
+      <dt>
+        Is soldout
+      </dt>
+      <dd>
+        <%= @show.is_soldout %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @show.image %>
+      </dd>
+
+      <dt>
+        Host
+      </dt>
+      <dd>
+        <%= @show.host_id %>
+      </dd>
+
+      <dt>
+        Show date
+      </dt>
+      <dd>
+        <%= @show.show_date %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@show.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@show.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit show
+    </h2>
+
+    <form action="/modify_show/<%= @show.id %>"  method="post" >
+      <div class="form-group">
+        <label for="bands_box">
+          Bands
+        </label>
+
+        <input type="text" id="bands_box" name="query_bands" class="form-control" value="<%= @show.bands %>">
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="is_soldout_box" name="query_is_soldout" value="1" <%= "checked" if @show.is_soldout %>>
+
+        <label class="custom-control-label"
+          for="is_soldout_box">Is soldout</label>
+      </div>
+
+      <div class="form-group">
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" class="form-control" value="<%= @show.image %>">
+      </div>
+
+      <div class="form-group">
+        <label for="host_id_box">
+          Host
+        </label>
+
+        <input type="text" id="host_id_box" name="query_host_id" class="form-control" value="<%= @show.host_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="show_date_box">
+          Show date
+        </label>
+
+        <input type="datetime-local" id="show_date_box" name="query_show_date"
+          class="form-control" value="<%= @show.show_date %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update show
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

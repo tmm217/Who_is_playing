@@ -1,0 +1,148 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of all shows
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new show
+    </h2>
+
+    <form action="/insert_show" method="post">
+      <div class="form-group">
+        <label for="bands_box">
+          Bands
+        </label>
+
+        <input type="text" id="bands_box" name="query_bands" class="form-control">
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="is_soldout_box" name="query_is_soldout" value="1">
+
+        <label class="custom-control-label" for="is_soldout_box">Is soldout</label>
+      </div>
+
+      <div class="form-group">
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="host_id_box">
+          Host
+        </label>
+
+        <input type="text" id="host_id_box" name="query_host_id" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="show_date_box">
+          Show date
+        </label>
+
+        <input type="datetime-local" id="show_date_box" name="query_show_date" class="form-control">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create show
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Bands
+        </th>
+
+        <th>
+          Is soldout
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Host
+        </th>
+
+        <th>
+          Show date
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @shows.each do |show| %>
+      <tr>
+        <td>
+          <%= show.id %>
+        </td>
+
+        <td>
+          <%= show.bands %>
+        </td>
+
+        <td>
+          <%= show.is_soldout %>
+        </td>
+
+        <td>
+          <%= show.image %>
+        </td>
+
+        <td>
+          <%= show.host_id %>
+        </td>
+
+        <td>
+          <%= show.show_date %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(show.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(show.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/shows/<%= show.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

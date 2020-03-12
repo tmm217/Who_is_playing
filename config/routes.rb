@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Show resource:
+
+  # CREATE
+  post("/insert_show", { :controller => "shows", :action => "create" })
+          
+  # READ
+  get("/shows", { :controller => "shows", :action => "index" })
+  
+  get("/shows/:path_id", { :controller => "shows", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_show/:path_id", { :controller => "shows", :action => "update" })
+  
+  # DELETE
+  get("/delete_show/:path_id", { :controller => "shows", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the User account:
 
   # SIGN UP FORM
