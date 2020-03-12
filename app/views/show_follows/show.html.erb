@@ -1,0 +1,86 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Show follow #<%= @show_follow.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/show_follows" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_show_follow/<%= @show_follow.id %>" class="btn btn-block btn-outline-secondary">
+          Delete show follow
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Show
+      </dt>
+      <dd>
+        <%= @show_follow.show_id %>
+      </dd>
+
+      <dt>
+        Attendee
+      </dt>
+      <dd>
+        <%= @show_follow.attendee_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@show_follow.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@show_follow.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit show follow
+    </h2>
+
+    <form action="/modify_show_follow/<%= @show_follow.id %>"  method="post" >
+      <div class="form-group">
+        <label for="show_id_box">
+          Show
+        </label>
+
+        <input type="text" id="show_id_box" name="query_show_id" class="form-control" value="<%= @show_follow.show_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="attendee_id_box">
+          Attendee
+        </label>
+
+        <input type="text" id="attendee_id_box" name="query_attendee_id" class="form-control" value="<%= @show_follow.attendee_id %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update show follow
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

@@ -1,0 +1,102 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of all show follows
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new show follow
+    </h2>
+
+    <form action="/insert_show_follow" method="post">
+      <div class="form-group">
+        <label for="show_id_box">
+          Show
+        </label>
+
+        <input type="text" id="show_id_box" name="query_show_id" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="attendee_id_box">
+          Attendee
+        </label>
+
+        <input type="text" id="attendee_id_box" name="query_attendee_id" class="form-control">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create show follow
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Show
+        </th>
+
+        <th>
+          Attendee
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @show_follows.each do |show_follow| %>
+      <tr>
+        <td>
+          <%= show_follow.id %>
+        </td>
+
+        <td>
+          <%= show_follow.show_id %>
+        </td>
+
+        <td>
+          <%= show_follow.attendee_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(show_follow.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(show_follow.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/show_follows/<%= show_follow.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
