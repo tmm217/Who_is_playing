@@ -1,0 +1,45 @@
+<h2>My Venues and Shows</h2>
+
+<% @current_user.venue_feed.each do | followed | %>
+  <h3><%= followed.name %></h3>
+  <table border="1">
+    <tr>
+      <th>
+        Image
+      </th>
+      <th>
+        Bands
+      </th>
+      <th>
+        Show Date
+      </th>
+      <th>
+        Sale Info
+      </th>
+      <th>
+        Track?
+      </th>
+    </tr>
+    <% followed.shows.limit(5).each do | details | %>
+    <tr>
+      <td>
+        <img src="<%= details.image %>" height="200" width="260">
+      </td>
+      <td>
+        <%= details.bands %>
+      </td>
+      <td>
+        <%= details.show_date.strftime("%a %d %b") %>
+      </td>
+      <td>
+        <% if details.is_soldout == true %>
+          Sold Out!
+        <% else %>
+          Tickets!
+        <% end %>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <% end %>
+<% end %>

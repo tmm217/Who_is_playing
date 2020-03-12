@@ -18,4 +18,15 @@ class User < ApplicationRecord
   has_many :venue_likes, :class_name => "VenueFollow", :foreign_key => "fan_id", :dependent => :destroy
   has_many :show_likes, :class_name => "ShowFollow", :foreign_key => "attendee_id", :dependent => :destroy
 
+  def followed_venues
+    render({ :template => "users/followed_venues.html.erb" })
+  end 
+
+  def venue_feed
+    u = User.where({:id => self.id}).at(0)
+    venue_ids = u.venue_likes.pluck(:venue_id)
+    array_of_venues = Venue.where({:id => venue_ids})
+    
+    return array_of_venues
+  end
 end

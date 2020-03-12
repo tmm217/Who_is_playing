@@ -1,0 +1,31 @@
+<h3><%= @venues.at(0).city %>'s Venues</h3>
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Following?
+    </th>
+  <tr>
+  <% @venues.each do |place| %>
+    <tr>
+      <td>
+        <%= place.name %>
+      </td>
+      <td>
+        <% follow = VenueFollow.where({ :fan_id => @current_user.id, :venue_id => place.id }).at(0) %>
+
+        <% if follow == nil %>
+          <form action="/insert_venue_follow" method="post">
+            <input type="hidden" value="<%= place.id %>" name="query_venue_id">
+            <button>Follow</button>
+          </form>
+        <% else %>
+          <a href="/delete_venue_follow/<%= follow.id %>">
+            Unfollow
+          </a>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>

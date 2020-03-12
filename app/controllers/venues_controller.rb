@@ -1,14 +1,12 @@
 class VenuesController < ApplicationController
   def index
-    @venues = Venue.all.order({ :created_at => :desc })
-
+    @venues = Venue.all.order({ :city => :asc })
     render({ :template => "venues/index.html.erb" })
   end
 
   def venue_by_city
     @venues = Venue.where({:city => params.fetch(:city)})
-
-    render({ :template => "venues/index.html.erb" })
+    render({ :template => "venues/city.html.erb" })
   end
 
   def show
