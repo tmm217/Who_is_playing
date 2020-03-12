@@ -47,6 +47,7 @@ Rails.application.routes.draw do
           
   # READ
   get("/venues", { :controller => "venues", :action => "index" })
+  get("/venues_by_city/:city", { :controller => "venues", :action => "venue_by_city" })
   
   get("/venues/:path_id", { :controller => "venues", :action => "show" })
   

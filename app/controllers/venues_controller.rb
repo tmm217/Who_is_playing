@@ -5,6 +5,12 @@ class VenuesController < ApplicationController
     render({ :template => "venues/index.html.erb" })
   end
 
+  def venue_by_city
+    @venues = Venue.where({:city => params.fetch(:city)})
+
+    render({ :template => "venues/index.html.erb" })
+  end
+
   def show
     the_id = params.fetch("path_id")
     @venue = Venue.where({:id => the_id }).at(0)
