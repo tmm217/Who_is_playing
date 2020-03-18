@@ -3,6 +3,9 @@
 <h2>Shows I'm Tracking</h2>
   <table border="1">
     <tr>
+      <th width="150">
+        Venue
+      </th>
       <th width="500">
         Bands
       </th>
@@ -18,7 +21,10 @@
     </tr>
     <% @current_user.show_feed.where("show_date > ?", Time.now).each do | tracked | %>
     <tr>
-      <td width="500">
+      <td width="150" style="text-align: center">
+        <%= tracked.host.name %>
+      </td>
+      <td width="500" style="text-align: center">
         <%= tracked.bands %>
       </td>
       <td width="150" style="text-align: center">
