@@ -16,7 +16,7 @@
         Track?
       </th>
     </tr>
-    <% @current_user.show_feed.each do | tracked | %>
+    <% @current_user.show_feed.where("show_date > ?", Time.now).each do | tracked | %>
     <tr>
       <td width="500">
         <%= tracked.bands %>
@@ -67,7 +67,7 @@
         Track?
       </th>
     </tr>
-    <% followed.shows.limit(5).each do | details | %>
+    <% followed.shows.where("show_date > ?", Time.now).limit(5).each do | details | %>
     <tr>
       <td>
         <img src="<%= details.image %>" height="200" width="260">
