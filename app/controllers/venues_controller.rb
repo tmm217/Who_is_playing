@@ -5,7 +5,7 @@ class VenuesController < ApplicationController
   end
 
   def venue_by_city
-    @venues = Venue.where({:city => params.fetch(:city)})
+    @venues = Venue.where({:city => params.fetch(:path_city)})
     render({ :template => "venues/city.html.erb" })
   end
 

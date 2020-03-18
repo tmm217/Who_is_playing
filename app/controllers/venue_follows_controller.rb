@@ -17,11 +17,13 @@ class VenueFollowsController < ApplicationController
     @venue_follow.venue_id = params.fetch("query_venue_id")
     @venue_follow.fan_id = @current_user.id
 
+    location = Venue.where({:id => @venue_follow.venue_id}).at(0)
+
     if @venue_follow.valid?
       @venue_follow.save
-      redirect_to("/venues_by_city", { :notice => "Venue follow created successfully." })
+      redirect_to("/cities/#{location.city}", { :notice => "Venue follow created successfully." })
     else
-      redirect_to("/venue_follows", { :notice => "Venue follow failed to create successfully." })
+      redirect_to("/cities/#{location.city}", { :notice => "Venue follow failed to create successfully." })
     end
   end
 
@@ -46,7 +48,9 @@ class VenueFollowsController < ApplicationController
 
     @venue_follow.destroy
 
-    redirect_to("/venues_by_city", { :notice => "Venue follow deleted successfully."} )
+    location = Venue.where({:id => @venue_follow.venue_id}).at(0)
+
+    redirect_to("/cities/#{location.city}", { :notice => "Venue follow deleted successfully."} )
   end
 
   def follow_city

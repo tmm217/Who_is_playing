@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if save_status == true
       session.store(:user_id,  @user.id)
    
-      redirect_to("/venues", { :notice => "User account created successfully."})
+      redirect_to("/cities", { :notice => "User account created successfully."})
     else
       redirect_to("/user_sign_up", { :alert => "User account failed to create successfully."})
     end

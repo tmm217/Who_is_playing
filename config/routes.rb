@@ -47,8 +47,8 @@ Rails.application.routes.draw do
           
   # READ
   # get("/venues", { :controller => "venues", :action => "index" })
-  get("/venues_by_city", { :controller => "venues", :action => "index" })
-  get("/venues_by_city/:city", { :controller => "venues", :action => "venue_by_city" })
+  get("/cities", { :controller => "venues", :action => "index" })
+  get("/cities/:path_city", { :controller => "venues", :action => "venue_by_city" })
   get("/venues/:path_id", { :controller => "venues", :action => "show" })
   
   # UPDATE
@@ -81,7 +81,7 @@ Rails.application.routes.draw do
 
   # Routes for the User account:
 
-  get("/users/:path_id/venues", {:controller => "users", :action => "followed_venues" })
+  get("/venues_and_shows", {:controller => "users", :action => "venues_and_shows" })
 
   # SIGN UP FORM
   get("/user_sign_up", { :controller => "users", :action => "new_registration_form" })        
