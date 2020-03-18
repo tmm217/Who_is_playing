@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Who's Playing</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+      <% if @current_user.blank? %>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_sign_in">Sign in <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_sign_up">Sign up</a>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <a class="nav-link" href="/cities">Cities <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/venues_and_shows">My Venues & Shows</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/edit_user_profile"><%= @current_user.username %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_sign_out">Sign out</a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
