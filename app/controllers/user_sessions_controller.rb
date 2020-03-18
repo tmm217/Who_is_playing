@@ -14,21 +14,21 @@ class UserSessionsController < ApplicationController
       are_they_legit = user.authenticate(the_supplied_password)
     
       if are_they_legit == false
-        redirect_to("/user_sign_in", { :alert => "Incorrect password." })
+        redirect_to("/user_sign_in", { :alert => "Who the hell are you!? That's not the right password." })
       else
         session.store(:user_id, user.id)
       
-        redirect_to("/venues_and_shows", { :notice => "Signed in successfully." })
+        redirect_to("/venues_and_shows", { :notice => "You're in!" })
       end
     else
-      redirect_to("/user_sign_in", { :alert => "No user with that email address." })
+      redirect_to("/user_sign_in", { :alert => "Hm...that username doesn't exist, amigo." })
     end
   end
 
   def destroy_cookies
     reset_session
 
-    redirect_to("/user_sign_in", { :notice => "Signed out successfully." })
+    redirect_to("/user_sign_in", { :notice => "G'bye!!" })
   end
  
 end

@@ -16,11 +16,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :venue_likes, :class_name => "VenueFollow", :foreign_key => "fan_id", :dependent => :destroy
-  has_many :show_likes, :class_name => "ShowFollow", :foreign_key => "attendee_id", :dependent => :destroy
-
-  def venues_and_shows
-    render({ :template => "users/venues_and_shows.html.erb" })
-  end 
+  has_many :show_likes, :class_name => "ShowFollow", :foreign_key => "attendee_id", :dependent => :destroy 
 
   def venue_feed
     u = User.where({:id => self.id}).at(0)

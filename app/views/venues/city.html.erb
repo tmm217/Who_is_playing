@@ -1,19 +1,11 @@
 <h3><%= @venues.at(0).city %>'s Venues</h3>
-<table>
-  <tr>
-    <th>
-      Name
-    </th>
-    <th>
-      Following?
-    </th>
-  <tr>
+<table style="padding-bottom: 10px">
   <% @venues.each do |place| %>
     <tr>
-      <td>
-        <%= place.name %>
+      <td style="padding-right: 20px;padding-bottom: 5px">
+        <h5><%= place.name %></h5>
       </td>
-      <td>
+      <td style="text-align: center">
         <% follow = VenueFollow.where({ :fan_id => @current_user.id, :venue_id => place.id }).at(0) %>
 
         <% if follow == nil %>

@@ -1,6 +1,6 @@
-<h2>My Venues and Shows</h2>
+<h1>My Venues and Shows</h1>
 
-<h3>Shows I'm Tracking</h3>
+<h2>Shows I'm Tracking</h2>
   <table border="1">
     <tr>
       <th width="150">
@@ -53,58 +53,35 @@
     </tr>
     <% end %>
 
-<% @current_user.venue_feed.each do | followed | %>
-  <table border="1">
-  <h3><a href="<%= followed.link %>"><%= followed.name %></a></h3>
-    <tr>
-      <th>
-        Image
-      </th>
-      <th width="500">
-        Bands
-      </th>
-      <th width="150">
-        Show Date
-      </th>
-      <th width="150">
-        Sale Info
-      </th>
-      <th width="150">
-        Track?
-      </th>
-    </tr>
-    <% followed.shows.where("show_date > ?", Time.now).limit(5).each do | details | %>
-    <tr>
-      <td>
-        <img src="<%= details.image %>" height="200" width="260">
-      </td>
-      <td width="500">
-        <%= details.bands %>
-      </td>
-      <td width="150" style="text-align: center">
-        <%= details.show_date.strftime("%a %d %b") %>
-      </td>
-      <td width="150" style="text-align: center">
-        <% if details.is_soldout == true %>
-          Sold Out!
-        <% else %>
-          Tickets!
-        <% end %>
-      </td width="150" style="text-align: center">
-      <td width="150" style="text-align: center">
-        <% track = ShowFollow.where({ :attendee_id => @current_user.id, :show_id => details.id }).at(0) %>
+<hr>
 
-        <% if track == nil %>
-          <form action="/insert_show_follow" method="post">
-            <input type="hidden" value="<%= details.id %>" name="query_show_id">
-            <button>Track</button>
-          </form>
-        <% else %>
-          <a href="/delete_show_follow/<%= track.id %>">
-            Untrack
-          </a>
-        <% end %>
-      </td>
-    </tr>
+<% @current_user.venue_feed.each do | followed | %>
+  <h3><a href="<%= followed.link %>"><%= followed.name %></a></h3>
+  <div id="venueCarousel" class="carousel slide" data-ride="carousel">
+    <% followed.shows.where("show_date > ?", Time.now).limit(5).each do | details | %>
+    <div class="carousel-inner">
+      <div class="carousel-item">
+        <img src="<%= details.image %>" height="200" width="260" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>details.bands</h5>
+          <p><%= details.show_date.strftime("%a %d %b") %></p>
+          <p>
+            <% if details.is_soldout == true %>
+              Sold Out!
+            <% else %>
+              Tickets!
+            <% end %>
+          </p>
+        </div>
+      </div>
     <% end %>
+    <a class="carousel-control-prev" href="#venueCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#venueCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 <% end %>

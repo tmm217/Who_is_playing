@@ -21,7 +21,7 @@ class VenueFollowsController < ApplicationController
 
     if @venue_follow.valid?
       @venue_follow.save
-      redirect_to("/cities/#{location.city}", { :notice => "Venue follow created successfully." })
+      redirect_to("/cities/#{location.city}", { :notice => "Get ready to rock!" })
     else
       redirect_to("/cities/#{location.city}", { :notice => "Venue follow failed to create successfully." })
     end
@@ -50,7 +50,7 @@ class VenueFollowsController < ApplicationController
 
     location = Venue.where({:id => @venue_follow.venue_id}).at(0)
 
-    redirect_to("/cities/#{location.city}", { :notice => "Venue follow deleted successfully."} )
+    redirect_to("/cities/#{location.city}", { :notice => "Nerd!"} )
   end
 
   def follow_city

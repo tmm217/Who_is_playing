@@ -5,6 +5,14 @@ class UsersController < ApplicationController
     render({ :template => "user_sessions/sign_up.html.erb" })
   end
 
+  def venues_and_shows
+    render({ :template => "users/venues_and_shows.html.erb" })
+  end
+
+  def experiment
+    render({:template => "users/copy_venues_and_shows.html.erb"})
+  end
+
   def create
     @user = User.new
     @user.email = params.fetch("query_email")
@@ -17,9 +25,9 @@ class UsersController < ApplicationController
     if save_status == true
       session.store(:user_id,  @user.id)
    
-      redirect_to("/cities", { :notice => "User account created successfully."})
+      redirect_to("/cities", { :notice => "May I take your hat, sir?!."})
     else
-      redirect_to("/user_sign_up", { :alert => "User account failed to create successfully."})
+      redirect_to("/user_sign_up", { :alert => "Oh, boy. You've got problems."})
     end
   end
     
