@@ -8,10 +8,10 @@
 
 <div class="row mb-3">
   <div class="col-md-12">
-    <% @venues.each do |venue| %>
+    <% @venues.distinct.pluck(:city).each do |venue| %>
       <ul>
         <li>
-          <a href="/cities/<%= venue.city %>"><%= venue.city %></a>
+          <a href="/cities/<%= venue %>"><%= venue %></a>
         </li>
       </ul>
       <% end %>
