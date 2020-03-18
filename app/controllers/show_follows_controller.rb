@@ -15,7 +15,7 @@ class ShowFollowsController < ApplicationController
   def create
     @show_follow = ShowFollow.new
     @show_follow.show_id = params.fetch("query_show_id")
-    @show_follow.attendee_id = params.fetch("query_attendee_id")
+    @show_follow.attendee_id = @current_user.id
 
     if @show_follow.valid?
       @show_follow.save

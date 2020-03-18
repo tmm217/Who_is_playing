@@ -29,4 +29,12 @@ class User < ApplicationRecord
     
     return array_of_venues
   end
+
+  def show_feed
+    u = User.where({:id => self.id}).at(0)
+    show_ids = u.show_likes.pluck(:show_id)
+    array_of_shows = Show.where({:id => show_ids})
+
+    return array_of_shows
+  end 
 end

@@ -39,6 +39,18 @@
         <% end %>
       </td width="150" style="text-align: center">
       <td>
+        <% track = ShowFollow.where({ :fan_id => @current_user.id, :show_id => details.id }).at(0) %>
+
+        <% if track == nil %>
+          <form action="/insert_show_follow" method="post">
+            <input type="hidden" value="<%= details.id %>" name="query_show_id">
+            <button>Track</button>
+          </form>
+        <% else %>
+          <a href="/delete_show_follow/<%= track.id %>">
+            Untrack
+          </a>
+        <% end %>
       </td>
     </tr>
     <% end %>
