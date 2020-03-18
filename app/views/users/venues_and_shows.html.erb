@@ -22,7 +22,7 @@
     <% @current_user.show_feed.where("show_date > ?", Time.now).each do | tracked | %>
     <tr>
       <td width="150" style="text-align: center">
-        <%= tracked.host.name %>
+        <a href="<%= tracked.host.link %>"><%= tracked.host.name %></a>
       </td>
       <td width="500" style="text-align: center">
         <%= tracked.bands %>
@@ -55,7 +55,7 @@
 
 <% @current_user.venue_feed.each do | followed | %>
   <table border="1">
-  <h2><%= followed.name %></h2>
+  <h2><a href="<%= followed.link %>"><%= followed.name %></a></h2>
     <tr>
       <th>
         Image
