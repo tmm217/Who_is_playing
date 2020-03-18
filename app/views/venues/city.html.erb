@@ -7,7 +7,6 @@
       </td>
       <td style="text-align: center">
         <% follow = VenueFollow.where({ :fan_id => @current_user.id, :venue_id => place.id }).at(0) %>
-
         <% if follow == nil %>
           <form action="/insert_venue_follow" method="post">
             <input type="hidden" value="<%= place.id %>" name="query_venue_id">

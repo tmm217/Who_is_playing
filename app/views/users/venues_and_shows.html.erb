@@ -1,30 +1,13 @@
-<h2>My Venues and Shows</h2>
+<h2>My Venues & Shows</h2>
 
 <h3>Shows I'm Tracking</h3>
-  <table border="1">
-    <tr>
-      <th width="150">
-        Venue
-      </th>
-      <th width="500">
-        Bands
-      </th>
-      <th width="150">
-        Show Date
-      </th>
-      <th width="150">
-        Sale Info
-      </th>
-      <th width="150">
-        Track?
-      </th>
-    </tr>
+  <table>
     <% @current_user.show_feed.where("show_date > ?", Time.now).each do | tracked | %>
     <tr>
-      <td width="150" style="text-align: center">
+      <td width="260" style="text-align: center">
         <a href="<%= tracked.host.link %>"><%= tracked.host.name %></a>
       </td>
-      <td width="500" style="text-align: center">
+      <td width="500">
         <%= tracked.bands %>
       </td>
       <td width="150" style="text-align: center">
@@ -32,9 +15,9 @@
       </td>
       <td width="150" style="text-align: center">
         <% if tracked.is_soldout == true %>
-          Sold Out!
+          Oof...sold out!
         <% else %>
-          Tickets!
+          Get a ticket!
         <% end %>
       </td width="150" style="text-align: center">
       <td width="150" style="text-align: center">
@@ -46,7 +29,7 @@
           </form>
         <% else %>
           <a href="/delete_show_follow/<%= track.id %>">
-            Untrack
+            Eh, pass
           </a>
         <% end %>
       </td>
@@ -54,31 +37,15 @@
     <% end %>
 
 <% @current_user.venue_feed.each do | followed | %>
-  <table border="1">
+  <table>
+  <hr>
   <h3><a href="<%= followed.link %>"><%= followed.name %></a></h3>
-    <tr>
-      <th>
-        Image
-      </th>
-      <th width="500">
-        Bands
-      </th>
-      <th width="150">
-        Show Date
-      </th>
-      <th width="150">
-        Sale Info
-      </th>
-      <th width="150">
-        Track?
-      </th>
-    </tr>
     <% followed.shows.where("show_date > ?", Time.now).limit(5).each do | details | %>
     <tr>
       <td>
         <img src="<%= details.image %>" height="200" width="260">
       </td>
-      <td width="500">
+      <td width="500" style="text-align: center">
         <%= details.bands %>
       </td>
       <td width="150" style="text-align: center">
@@ -86,11 +53,11 @@
       </td>
       <td width="150" style="text-align: center">
         <% if details.is_soldout == true %>
-          Sold Out!
+          Oof...sold out!
         <% else %>
-          Tickets!
+          Get a ticket!
         <% end %>
-      </td width="150" style="text-align: center">
+      </td>
       <td width="150" style="text-align: center">
         <% track = ShowFollow.where({ :attendee_id => @current_user.id, :show_id => details.id }).at(0) %>
 
