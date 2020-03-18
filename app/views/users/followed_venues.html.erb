@@ -1,5 +1,52 @@
 <h1>My Venues and Shows</h1>
 
+<h2>Shows I'm Tracking</h2>
+  <table border="1">
+    <tr>
+      <th width="500">
+        Bands
+      </th>
+      <th width="150">
+        Show Date
+      </th>
+      <th width="150">
+        Sale Info
+      </th>
+      <th width="150">
+        Track?
+      </th>
+    </tr>
+    <% @current_user.show_feed.each do | tracked | %>
+    <tr>
+      <td width="500">
+        <%= tracked.bands %>
+      </td>
+      <td width="150" style="text-align: center">
+        <%= tracked.show_date.strftime("%a %d %b") %>
+      </td>
+      <td width="150" style="text-align: center">
+        <% if tracked.is_soldout == true %>
+          Sold Out!
+        <% else %>
+          Tickets!
+        <% end %>
+      </td width="150" style="text-align: center">
+      <td width="150" style="text-align: center">
+        <% track = ShowFollow.where({ :attendee_id => @current_user.id, :show_id => tracked.id }).at(0) %>
+        <% if track == nil %>
+          <form action="/insert_show_follow" method="post">
+            <input type="hidden" value="<%= tracked.id %>" name="query_show_id"
+            <button>Track</button>
+          </form>
+        <% else %>
+          <a href="/delete_show_follow/<%= track.id %>">
+            Untrack
+          </a>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+
 <% @current_user.venue_feed.each do | followed | %>
   <table border="1">
   <h2><%= followed.name %></h2>
@@ -38,8 +85,8 @@
           Tickets!
         <% end %>
       </td width="150" style="text-align: center">
-      <td>
-        <% track = ShowFollow.where({ :fan_id => @current_user.id, :show_id => details.id }).at(0) %>
+      <td width="150" style="text-align: center">
+        <% track = ShowFollow.where({ :attendee_id => @current_user.id, :show_id => details.id }).at(0) %>
 
         <% if track == nil %>
           <form action="/insert_show_follow" method="post">

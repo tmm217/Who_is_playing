@@ -19,9 +19,9 @@ class ShowFollowsController < ApplicationController
 
     if @show_follow.valid?
       @show_follow.save
-      redirect_to("/show_follows", { :notice => "Show follow created successfully." })
+      redirect_to("/users/#{@current_user.id}/venues", { :notice => "Show follow created successfully." })
     else
-      redirect_to("/show_follows", { :notice => "Show follow failed to create successfully." })
+      redirect_to("/users/#{@current_user.id}/venues", { :notice => "Show follow failed to create successfully." })
     end
   end
 
@@ -46,6 +46,6 @@ class ShowFollowsController < ApplicationController
 
     @show_follow.destroy
 
-    redirect_to("/show_follows", { :notice => "Show follow deleted successfully."} )
+    redirect_to("/users/#{@current_user.id}/venues", { :notice => "Show follow deleted successfully."} )
   end
 end
