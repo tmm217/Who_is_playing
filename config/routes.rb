@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_show_follow/:path_id", { :controller => "show_follows", :action => "destroy" })
+  
 
   #------------------------------
 
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_venue_follow/:path_id", { :controller => "venue_follows", :action => "destroy" })
+  get("/delete_follow_venue/:path_id", { :controller => "venue_follows", :action => "destroy_part2" })
 
   #------------------------------
 

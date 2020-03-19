@@ -50,10 +50,18 @@ class VenueFollowsController < ApplicationController
 
     location = Venue.where({:id => @venue_follow.venue_id}).at(0)
 
-    redirect_to("/cities/#{location.city}", { :notice => "Nerd!"} )
+    redirect_to("/cities/#{location.city}", { :notice => "We get it, you're 'too' 'cool' for that place."} )
   end
 
-  def follow_city
+  def destroy_part2
+    the_id = params.fetch("path_id")
+    @venue_follow = VenueFollow.where({ :id => the_id }).at(0)
 
+    @venue_follow.destroy
+
+    location = Venue.where({:id => @venue_follow.venue_id}).at(0)
+
+    redirect_to("/venues_and_shows", { :notice => "We get it, you're 'too' 'cool' for that place."} )
   end
+
 end
