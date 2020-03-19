@@ -13,4 +13,6 @@
 class Venue < ApplicationRecord
   has_many :followers, :class_name => "VenueFollow", :dependent => :destroy
   has_many :shows, :foreign_key => "host_id", :dependent => :destroy
+
+  validates :name, :uniqueness => { :scope => :city }
 end
