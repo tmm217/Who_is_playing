@@ -1,5 +1,5 @@
 <h3>Shows I'm Tracking</h3>
-  <% if @current_user.show_feed.nil? %>
+  <% if @current_user.show_feed.empty? %>
     <p>The scene's a bit dry at the moment...<p>
   <% else %>
     <table>
@@ -38,95 +38,95 @@
       <% end %>
   <% end %>
 
-<% if @current_user.venue_feed.nil? %>
-  <h3>Venues I'm Following</h3>
-  <p>Point me in the direction of the music now please.</p>
-<% else %>  
-  <% @current_user.venue_feed.each_with_index do | followed, index | %>
-    <% if index == 0 %>
-      <table>
-        <tr>
-          <th colspan="5">
-            <h3>Venues I'm Following</h3>
-            <h4><a href="<%= followed.link %>"><%= followed.name %></a></h4>
-          </th>
-        </tr>
-        <% followed.shows.where("show_date > ?", Time.now).limit(9).each do | details | %>
-        <tr>
-          <td>
-            <img src="<%= details.image %>" height="200" width="260">
-          </td>
-          <td width="500" style="text-align: center">
-            <%= details.bands %>
-          </td>
-          <td width="150" style="text-align: center">
-            <%= details.show_date.strftime("%a %d %b") %>
-          </td>
-          <td width="150" style="text-align: center">
-            <% if details.is_soldout == true %>
-              Oof...sold out!
-            <% else %>
-              Get a ticket!
-            <% end %>
-          </td>
-          <td width="150" style="text-align: center">
-            <% track = ShowFollow.where({ :attendee_id => @current_user.id, :show_id => details.id }).at(0) %>
-            <% if track == nil %>
-              <form action="/insert_show_follow" method="post">
-                <input type="hidden" value="<%= details.id %>" name="query_show_id">
-                <button class="btn btn-secondary btn-sm">Track</button>
-              </form>
-            <% else %>
-              <a href="/delete_show_follow/<%= track.id %>">
-                Untrack
-              </a>
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </table>
-    <% else %>
-      <table>
-        <tr>
-          <th colspan="5">
-            <h4><a href="<%= followed.link %>"><%= followed.name %></a></h4>
-          </th>
-        </tr>
-        <% followed.shows.where("show_date > ?", Time.now).limit(9).each do | details | %>
-        <tr>
-          <td>
-            <img src="<%= details.image %>" height="200" width="260">
-          </td>
-          <td width="500" style="text-align: center">
-            <%= details.bands %>
-          </td>
-          <td width="150" style="text-align: center">
-            <%= details.show_date.strftime("%a %d %b") %>
-          </td>
-          <td width="150" style="text-align: center">
-            <% if details.is_soldout == true %>
-              Oof...sold out!
-            <% else %>
-              Get a ticket!
-            <% end %>
-          </td>
-          <td width="150" style="text-align: center">
-            <% track = ShowFollow.where({ :attendee_id => @current_user.id, :show_id => details.id }).at(0) %>
-            <% if track == nil %>
-              <form action="/insert_show_follow" method="post">
-                <input type="hidden" value="<%= details.id %>" name="query_show_id">
-                <button class="btn btn-secondary btn-sm">Track</button>
-              </form>
-            <% else %>
-              <a href="/delete_show_follow/<%= track.id %>">
-                Untrack
-              </a>
-            <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </table>
+<h3>Venues I'm Following</h3>
+  <% if @current_user.venue_feed.empty? %> 
+    <p>Point me in the direction of the music now please.</p>
+  <% else %>  
+    <% @current_user.venue_feed.each_with_index do | followed, index | %>
+      <% if index == 0 %>
+        <table>
+          <tr>
+            <th colspan="5">
+              <h3>Venues I'm Following</h3>
+              <h4><a href="<%= followed.link %>"><%= followed.name %></a></h4>
+            </th>
+          </tr>
+          <% followed.shows.where("show_date > ?", Time.now).limit(9).each do | details | %>
+          <tr>
+            <td>
+              <img src="<%= details.image %>" height="200" width="260">
+            </td>
+            <td width="500" style="text-align: center">
+              <%= details.bands %>
+            </td>
+            <td width="150" style="text-align: center">
+              <%= details.show_date.strftime("%a %d %b") %>
+            </td>
+            <td width="150" style="text-align: center">
+              <% if details.is_soldout == true %>
+                Oof...sold out!
+              <% else %>
+                Get a ticket!
+              <% end %>
+            </td>
+            <td width="150" style="text-align: center">
+              <% track = ShowFollow.where({ :attendee_id => @current_user.id, :show_id => details.id }).at(0) %>
+              <% if track == nil %>
+                <form action="/insert_show_follow" method="post">
+                  <input type="hidden" value="<%= details.id %>" name="query_show_id">
+                  <button class="btn btn-secondary btn-sm">Track</button>
+                </form>
+              <% else %>
+                <a href="/delete_show_follow/<%= track.id %>">
+                  Untrack
+                </a>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <table>
+          <tr>
+            <th colspan="5">
+              <h4><a href="<%= followed.link %>"><%= followed.name %></a></h4>
+            </th>
+          </tr>
+          <% followed.shows.where("show_date > ?", Time.now).limit(9).each do | details | %>
+          <tr>
+            <td>
+              <img src="<%= details.image %>" height="200" width="260">
+            </td>
+            <td width="500" style="text-align: center">
+              <%= details.bands %>
+            </td>
+            <td width="150" style="text-align: center">
+              <%= details.show_date.strftime("%a %d %b") %>
+            </td>
+            <td width="150" style="text-align: center">
+              <% if details.is_soldout == true %>
+                Oof...sold out!
+              <% else %>
+                Get a ticket!
+              <% end %>
+            </td>
+            <td width="150" style="text-align: center">
+              <% track = ShowFollow.where({ :attendee_id => @current_user.id, :show_id => details.id }).at(0) %>
+              <% if track == nil %>
+                <form action="/insert_show_follow" method="post">
+                  <input type="hidden" value="<%= details.id %>" name="query_show_id">
+                  <button class="btn btn-secondary btn-sm">Track</button>
+                </form>
+              <% else %>
+                <a href="/delete_show_follow/<%= track.id %>">
+                  Untrack
+                </a>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      <% end %>
+      <hr>
     <% end %>
-    <hr>
   <% end %>
-<% end %>
