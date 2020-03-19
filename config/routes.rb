@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   # Routes for the User account:
 
   get("/venues_and_shows", {:controller => "users", :action => "venues_and_shows" })
+  get("/", {:controller => "users", :action => "venues_and_shows" })
   get("/experiment", {:controller => "users", :action => "experiment" })
 
   # SIGN UP FORM
