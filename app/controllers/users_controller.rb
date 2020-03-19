@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if save_status == true
       session.store(:user_id,  @user.id)
    
-      redirect_to("/cities", { :notice => "May I take your hat, sir?!."})
+      redirect_to("/cities", { :notice => "Well come on in!"})
     else
       redirect_to("/user_sign_up", { :alert => "Oh, boy. You've got problems."})
     end
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
 
-      redirect_to("/edit_user_profile", { :notice => "User account updated successfully."})
+      redirect_to("/edit_user_profile", { :notice => "Purely cosmetic, sure."})
     else
       render({ :template => "users/edit_profile_with_errors.html.erb" })
     end

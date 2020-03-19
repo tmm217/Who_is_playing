@@ -28,7 +28,7 @@ class UserSessionsController < ApplicationController
   def destroy_cookies
     reset_session
 
-    redirect_to("/user_sign_in", { :notice => "G'bye!!" })
+    redirect_to("/user_sign_in", { :notice => "G'bye!" })
   end
  
 end

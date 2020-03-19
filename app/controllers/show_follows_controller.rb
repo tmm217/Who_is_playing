@@ -46,6 +46,6 @@ class ShowFollowsController < ApplicationController
 
     @show_follow.destroy
 
-    redirect_to("/venues_and_shows", { :notice => "Netflix is more fun, huh?"} )
+    redirect_to("/venues_and_shows", { :notice => "WOW. Fine, go watch more Netflix."} )
   end
 end
