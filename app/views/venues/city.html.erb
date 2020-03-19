@@ -10,7 +10,7 @@
         <% if follow == nil %>
           <form action="/insert_venue_follow" method="post">
             <input type="hidden" value="<%= place.id %>" name="query_venue_id">
-            <button>Follow</button>
+            <button class="btn btn-secondary btn-sm">Follow</button>
           </form>
         <% else %>
           <a href="/delete_venue_follow/<%= follow.id %>">
