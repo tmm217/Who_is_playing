@@ -20,15 +20,15 @@ task(:knitting_shows => :environment) do
     sale = band_page.css("div.eventartists__event__ticketbutton a").text.strip
 
     s = Show.new
-      s.host_id = 3
-      s.show_date = "#{date}"
-      s.image = "#{image}"
-      s.bands = "#{bands}"
-      if sale == "SOLD OUT"
-        s.is_soldout = "true"
-      else
-        s.is_soldout = "false"
-      end
+    s.host_id = 3
+    s.show_date = "#{date}"
+    s.image = "#{image}"
+    s.bands = "#{bands}"
+    if sale == "SOLD OUT"
+      s.is_soldout = "true"
+    else
+      s.is_soldout = "false"
+    end
     s.save
   end
 end
