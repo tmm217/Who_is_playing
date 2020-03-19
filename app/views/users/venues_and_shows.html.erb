@@ -1,5 +1,5 @@
 <h3>Shows I'm Tracking</h3>
-  <% if @current_user.show_feed.blank? %>
+  <% if @current_user.show_feed.nil? %>
     <p>The scene's a bit dry at the moment...<p>
   <% else %>
     <table>
@@ -38,7 +38,7 @@
       <% end %>
   <% end %>
 
-<% if @current_user.venue_feed.blank? %>
+<% if @current_user.venue_feed.nil? %>
   <h3>Venues I'm Following</h3>
   <p>Point me in the direction of the music now please.</p>
 <% else %>  
